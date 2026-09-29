@@ -59,10 +59,11 @@ Every material product/technical decision. Format per the brief. Dates are the d
 - **Why:** entity resolution is the main false-positive source (whitespace Attack 4). Makes uncertainty structural.
 - **Revisit condition:** eval data on weak-link precision.
 
-### D-008 · Same authority ⇒ Change; different authority ⇒ Conflict
-- **Date:** 2026-09-29
+### D-008 · Same authority + explicit change language ⇒ Change; otherwise ⇒ Conflict
+- **Date:** 2026-09-29 (amended same day during build)
 - **Context:** A newer email doesn't always override a calendar entry.
-- **Chosen:** later value from the same authority (same sender domain/system + identifier) is a Change; disagreement between different authorities is a Conflict and Nexus never picks a winner.
+- **Chosen:** a later value from the same authority (sender domain) is a Change **only if** it uses explicit change language ("rescheduled", "now departs", "schedule change"). Any other disagreement — including the same sender saying two different things without a cue — is a Conflict, and Nexus never picks a winner.
+- **Amendment:** the first version treated "same authority, newer" as a change. Writing the Acme scenario showed why that's wrong: the recruiter's "just confirming Monday 5th" contradicts her own invite for Tuesday 6th. That's exactly the ambiguity the user must see, not one Nexus should silently resolve.
 - **Why:** the recruiter may have typo'd; the calendar may be stale. Only the user knows.
 - **Revisit condition:** user research shows people want "newest wins" defaults.
 
@@ -89,3 +90,20 @@ Every material product/technical decision. Format per the brief. Dates are the d
 - **Chosen:** when a later outgoing message matches a commitment, the situation moves to Resolved with reason "Appears fulfilled", status *Possible*, one-click Reopen, and an audit entry attributed to Nexus.
 - **Why:** moving an item between lists is not a consequential external action; hiding the reason would be.
 - **Revisit condition:** reopen rate on auto-resolved items > 10%.
+
+### D-013 · Order by "what you don't know" before "what you forgot"
+- **Date:** 2026-09-29
+- **Context:** First build sorted Needs attention purely by time. An overdue item someone *else* owes the user outranked an interview date conflict four days out.
+- **Options:** (a) pure time order, (b) type order, (c) tiers by who is likely unaware, then time.
+- **Chosen:** (c). Tier 0: strong conflicts and changes (the user probably doesn't know). Tier 1: possible conflicts, the user's own commitments, requests (the user wrote or read them). Tier 2: things others owe the user. Time order within a tier.
+- **Why:** the costliest failures are the ones nobody has noticed yet; the user already knows about their own promises.
+- **Trade-offs:** an item due today can sit below one due in a week. Mitigated by showing the date on every row.
+- **Evidence:** reasoning only. **Not yet validated.**
+- **Revisit condition:** usability test shows people act on tier-1 items first regardless.
+
+### D-014 · Subject ids from the most stable identifier, not from membership
+- **Date:** 2026-09-29
+- **Context:** Found by a failing test: ids were hashed from the list of member sources, so a new email arriving in a thread changed the situation id and silently orphaned the user's earlier decision.
+- **Chosen:** subject id = hash of the highest-priority strong key (calendar UID → reference → flight → thread).
+- **Why:** FR-16 (idempotent ids) and FR-24 (reopen on new evidence) both depend on ids surviving new evidence.
+- **Revisit condition:** two unrelated subjects sharing a thread (a known limitation of thread linking).

@@ -1,0 +1,168 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/instrument-sans';
+@import '@fontsource-variable/source-serif-4';
+
+/*
+ * Design tokens — docs/design/ux-design.md
+ * Nexus speaks in sans; sources speak in serif. That's the whole visual idea.
+ */
+:root {
+  --paper: #f4f6f9;
+  --surface: #ffffff;
+  --surface-sunk: #eef1f5;
+  --ink: #1a1f2b;
+  --ink-muted: #5b6475;
+  --ink-faint: #636c7d;
+  --rule: #dde1e8;
+  --rule-strong: #c6ccd6;
+  --action: #3346a8;
+  --action-ink: #ffffff;
+  --action-tint: #e8ebf8;
+  --mark: #ffe58a;
+  --mark-ink: #1a1f2b;
+
+  --conflict: #9a5800;
+  --conflict-tint: #fdf1de;
+  --change: #1f5fa8;
+  --change-tint: #e6effa;
+  --commitment: #2f6b4f;
+  --commitment-tint: #e4f2ea;
+  --waiting: #5b6475;
+  --waiting-tint: #edf0f4;
+  --missing: #6b4fa0;
+  --missing-tint: #f0ebf8;
+
+  --ok: #2f6b4f;
+  --warn: #9a5800;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --paper: #12151b;
+    --surface: #1a1e26;
+    --surface-sunk: #151920;
+    --ink: #e7eaf0;
+    --ink-muted: #a3acbb;
+    --ink-faint: #8e97a7;
+    --rule: #2c323d;
+    --rule-strong: #3a414e;
+    --action: #9aabf2;
+    --action-ink: #12151b;
+    --action-tint: #232a44;
+    --mark: #6b5a12;
+    --mark-ink: #fff7d6;
+    --conflict: #f0b35a;
+    --conflict-tint: #33271a;
+    --change: #8dbaf0;
+    --change-tint: #1b2838;
+    --commitment: #86cfa9;
+    --commitment-tint: #1a2d24;
+    --waiting: #a3acbb;
+    --waiting-tint: #222731;
+    --missing: #c3aef0;
+    --missing-tint: #2a2438;
+    --ok: #86cfa9;
+    --warn: #f0b35a;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --paper: #12151b;
+  --surface: #1a1e26;
+  --surface-sunk: #151920;
+  --ink: #e7eaf0;
+  --ink-muted: #a3acbb;
+  --ink-faint: #8e97a7;
+  --rule: #2c323d;
+  --rule-strong: #3a414e;
+  --action: #9aabf2;
+  --action-ink: #12151b;
+  --action-tint: #232a44;
+  --mark: #6b5a12;
+  --mark-ink: #fff7d6;
+  --conflict: #f0b35a;
+  --conflict-tint: #33271a;
+  --change: #8dbaf0;
+  --change-tint: #1b2838;
+  --commitment: #86cfa9;
+  --commitment-tint: #1a2d24;
+  --waiting: #a3acbb;
+  --waiting-tint: #222731;
+  --missing: #c3aef0;
+  --missing-tint: #2a2438;
+  --ok: #86cfa9;
+  --warn: #f0b35a;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: 'Instrument Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Source Serif 4 Variable', Georgia, 'Times New Roman', serif;
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-sunk: var(--surface-sunk);
+  --color-ink: var(--ink);
+  --color-muted: var(--ink-muted);
+  --color-faint: var(--ink-faint);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-action: var(--action);
+  --color-action-ink: var(--action-ink);
+  --color-action-tint: var(--action-tint);
+  --color-mark: var(--mark);
+  --color-mark-ink: var(--mark-ink);
+  --color-conflict: var(--conflict);
+  --color-conflict-tint: var(--conflict-tint);
+  --color-change: var(--change);
+  --color-change-tint: var(--change-tint);
+  --color-commitment: var(--commitment);
+  --color-commitment-tint: var(--commitment-tint);
+  --color-waiting: var(--waiting);
+  --color-waiting-tint: var(--waiting-tint);
+  --color-missing: var(--missing);
+  --color-missing-tint: var(--missing-tint);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+}
+
+html,
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+[tabindex='-1']:focus {
+  outline: none;
+}
+
+:focus-visible:not([tabindex='-1']) {
+  outline: 2px solid var(--action);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+mark.evidence-mark {
+  background: var(--mark);
+  color: var(--mark-ink);
+  padding: 0 0.12em;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+dialog::backdrop {
+  background: rgb(10 14 22 / 0.45);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .leave {
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+}

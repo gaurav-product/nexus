@@ -67,13 +67,28 @@ function needsAttention(s: Situation, sensitivity: Sensitivity, now: string): bo
   }
 }
 
-const TYPE_ORDER: Record<string, number> = { conflict: 0, change: 1, missing_info: 2, commitment: 3 };
+/**
+ * Ordering (D-013): surface what you DON'T know before what you forgot.
+ *   Tier 0 — strong conflicts and changes: the user likely doesn't know yet.
+ *   Tier 1 — possible conflicts, my commitments, requests: the user made or saw these.
+ *   Tier 2 — things other people owe me.
+ * Within a tier, sooner first; overdue counts as "now".
+ */
+function tier(s: Situation): number {
+  const d = s.details;
+  if ((d.type === 'conflict' && d.linkStrength === 'strong') || d.type === 'change') return 0;
+  if (d.type === 'commitment' && d.owner === 'other') return 2;
+  return 1;
+}
 
 function urgency(s: Situation, now: string): number {
-  const typeBias = TYPE_ORDER[s.type]! * 0.01;
-  if (s.details.type === 'commitment' && s.details.state === 'overdue') return typeBias;
-  if (!s.relevantAt) return 72 + typeBias;
-  return Math.max(0, (Date.parse(s.relevantAt) - Date.parse(now)) / 3_600_000) + typeBias;
+  const hours =
+    s.details.type === 'commitment' && s.details.state === 'overdue'
+      ? 0
+      : s.relevantAt
+        ? Math.max(0, (Date.parse(s.relevantAt) - Date.parse(now)) / 3_600_000)
+        : 72;
+  return tier(s) * 100_000 + hours;
 }
 
 export function latestDecisions(decisions: UserDecision[]): Map<string, UserDecision> {

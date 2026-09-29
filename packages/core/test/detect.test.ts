@@ -231,7 +231,9 @@ describe('views', () => {
     const na = views.filter((v) => inView(v, 'needs_attention'));
     expect(na).toHaveLength(6);
     expect(views.filter((v) => inView(v, 'resolved'))).toHaveLength(1);
-    // Overdue first
-    expect(na[0]!.details.type === 'commitment' && na[0]!.details.state).toBe('overdue');
+    // D-013: strong conflicts/changes first, then my items, then what others owe me.
+    expect(na.map((v) => v.type)).toEqual(['conflict', 'change', 'conflict', 'commitment', 'missing_info', 'commitment']);
+    expect(na[0]!.status).toBe('conflicting');
+    expect(na[na.length - 1]!.bucket).toBe('waiting');
   });
 });
