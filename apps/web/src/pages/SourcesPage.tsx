@@ -41,14 +41,16 @@ export function SourcesPage() {
     return g;
   }, [sources]);
 
-  const download = () => {
-    const blob = new Blob([exportData()], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'nexus-export.json';
-    a.click();
-    URL.revokeObjectURL(url);
+  const [exported, setExported] = useState<string | undefined>();
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(exported ?? '');
+      setCopied(true);
+    } catch {
+      document.getElementById('export-json')?.focus();
+      (document.getElementById('export-json') as HTMLTextAreaElement | null)?.select();
+    }
   };
 
   return (
@@ -156,7 +158,7 @@ export function SourcesPage() {
           In this demo, your decisions and settings stay in this browser only. Export them, or delete everything.
         </p>
         <div className="mt-3 flex flex-wrap gap-2">
-          <Button onClick={download}>
+          <Button onClick={() => { setExported(exportData()); setCopied(false); }}>
             <Download aria-hidden size={15} /> Export as JSON
           </Button>
           {confirmDelete ? (
@@ -180,6 +182,13 @@ export function SourcesPage() {
             </Button>
           )}
         </div>
+        {exported && (
+          <div className="mt-3">
+            <label htmlFor="export-json" className="text-[13px] font-medium">Your export</label>
+            <textarea id="export-json" readOnly value={exported} rows={8} className="mt-1 block w-full rounded-lg border border-rule bg-sunk p-2 font-mono text-[12px]" />
+            <Button className="mt-2" onClick={copy}>{copied ? 'Copied' : 'Copy to clipboard'}</Button>
+          </div>
+        )}
       </section>
     </div>
   );
