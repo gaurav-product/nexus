@@ -9,3 +9,4 @@ playwright-report/
 *.tmp.ts
 .DS_Store
 apps/web/nexus-demo.html
+nexus-repo.zip

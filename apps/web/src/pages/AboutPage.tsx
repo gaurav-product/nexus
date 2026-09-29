@@ -55,7 +55,11 @@ export function AboutPage() {
         deterministic rules in your browser.
       </p>
       <p className="mt-2 text-[14.5px] leading-relaxed">
-        Nexus is a portfolio project. Its product thesis, research, PRD and trade-offs are documented in the repository. None of it has been validated with real users yet.
+        Nexus is a portfolio project. Its product thesis, research, PRD and trade-offs are documented in the{' '}
+        <a href="https://github.com/gaurav-product/nexus" target="_blank" rel="noreferrer" className="font-medium text-action underline-offset-2 hover:underline">
+          GitHub repository
+        </a>
+        . None of it has been validated with real users yet.
       </p>
       <p className="mt-4">
         <Link to="/inbox" className="font-medium text-action underline-offset-2 hover:underline">

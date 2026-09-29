@@ -1,6 +1,6 @@
 # Nexus — Personal Decision & Context Engine
 
-*A portfolio case study by Gaurav Kumar Singh. Research, product decisions, design and build. Every result below is either measured in this repo or labelled **not yet validated**.*
+*A portfolio case study by Gaurav Kumar Singh. Code: [github.com/gaurav-product/nexus](https://github.com/gaurav-product/nexus). Research, product decisions, design and build. Every result below is either measured in this repo or labelled **not yet validated**.*
 
 ---
 
