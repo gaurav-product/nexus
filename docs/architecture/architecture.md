@@ -91,6 +91,11 @@ Every entity carries `id`, source/provenance, timestamps and status where it app
 - **Fulfilment:** later message in the right direction to/from the same counterparty sharing a significant keyword with the promised object (+ attachment for "send/share") → *appears fulfilled* (Possible, reversible).
 - **Missing info:** a document request with no matching attachment or uploaded document meeting the qualifier (e.g. *signed*) → *Not found in connected sources*.
 
+### Ordering and views
+- **Needs attention** = open items that are urgent: strong conflicts/changes within 14 days, my commitments due within 2 days or overdue, any request, overdue Waiting items. Sensitive mode also includes undated commitments and bulk deadlines.
+- **Order** (D-013): tier 0 strong conflicts & changes → tier 1 possible conflicts, my commitments, requests → tier 2 others' commitments; time order within a tier.
+- **Views:** Conflicts, Changes, Commitments (incl. requests, D-015), Waiting, Resolved (resolved + dismissed). Snoozed items stay in their type view, dimmed.
+
 ## 6. AI architecture
 
 ```ts

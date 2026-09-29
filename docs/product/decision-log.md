@@ -107,3 +107,12 @@ Every material product/technical decision. Format per the brief. Dates are the d
 - **Chosen:** subject id = hash of the highest-priority strong key (calendar UID → reference → flight → thread).
 - **Why:** FR-16 (idempotent ids) and FR-24 (reopen on new evidence) both depend on ids surviving new evidence.
 - **Revisit condition:** two unrelated subjects sharing a thread (a known limitation of thread linking).
+
+### D-015 · Show "requests" (missing information) under Commitments
+- **Date:** 2026-09-29
+- **Context:** The brief's inbox sections are Needs attention, Conflicts, Changes, Commitments, Waiting, Resolved. Missing-information situations had no section.
+- **Options:** (a) a seventh section, (b) under Waiting, (c) under Commitments.
+- **Chosen:** (c), labelled "Request" on the card.
+- **Why:** a document someone asked *you* for is effectively an obligation on you; Waiting is for obligations on others. Adding a section for one item type adds navigation weight.
+- **Trade-offs:** the section name is slightly inaccurate.
+- **Revisit condition:** requests turn out to be frequent in research.
