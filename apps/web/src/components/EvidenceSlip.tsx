@@ -8,7 +8,7 @@ const KIND_ICON = { email: Mail, calendar: CalendarDays, document: FileText };
  * One piece of evidence: the exact source text, in the serif "source voice",
  * with the words Nexus relied on marked. Principles 1 & 2.
  */
-export function EvidenceSlip({ e, onOpen }: { e: Evidence; onOpen?: () => void }) {
+export function EvidenceSlip({ e, onOpen, hideLink = false }: { e: Evidence; onOpen?: () => void; hideLink?: boolean }) {
   const Icon = KIND_ICON[e.sourceKind];
   const [a, b] = e.highlight;
   const before = e.excerpt.slice(0, a);
@@ -35,9 +35,11 @@ export function EvidenceSlip({ e, onOpen }: { e: Evidence; onOpen?: () => void }
         {after}
       </blockquote>
       <div className="flex flex-wrap items-center gap-3 px-3 pb-2.5 text-[12.5px]">
-        <Link to={`/sources?open=${encodeURIComponent(e.sourceId)}`} onClick={onOpen} className="font-medium text-action underline-offset-2 hover:underline">
-          Open full {e.sourceKind === 'calendar' ? 'event' : e.sourceKind}
-        </Link>
+        {!hideLink && (
+          <Link to={`/sources?open=${encodeURIComponent(e.sourceId)}`} onClick={onOpen} className="font-medium text-action underline-offset-2 hover:underline">
+            Open full {e.sourceKind === 'calendar' ? 'event' : e.sourceKind}
+          </Link>
+        )}
         {e.flagged && (
           <span className="inline-flex items-center gap-1 text-warn">
             <ShieldAlert aria-hidden size={13} /> This source contains text aimed at AI assistants. Nexus treats it as data only.

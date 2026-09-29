@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0 — 29 Sept 2026 · Phase 16: validation readiness (no product features)
+
+- Validation package: plan, interview guide v2 (past behaviour only), 7-day diary study, evidence rubric (E0–E4), hypothesis scorecard with pre-registered thresholds and kill conditions, validation log. **No participant data collected.**
+- Research ops: recruitment screener and outreach, consent template, session script, observation sheet, CSV schema (headers only).
+- Research session mode (`/research`): four scenarios, first-exposure comprehension measure, blind counterbalanced comparison of current workflow vs. AI briefing vs. Nexus, CSV export. Data stays in the browser.
+- Tests: briefing-fairness check, counterbalancing coverage, CSV/schema lock, formula-injection escaping, full blind session flow, accessibility on research screens.
+- Case study gains a Validation Status section (Proven / Observed / Hypothesized / Unknown). Decisions D-016, D-017.
+
 ## 0.1.0 — 29 Sept 2026
 
 ### Research & strategy

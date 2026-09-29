@@ -26,6 +26,7 @@ const LINKS = [
   { to: '/sources', label: 'Sources' },
   { to: '/activity', label: 'Activity' },
   { to: '/about', label: 'How it works' },
+  { to: '/research', label: 'Research' },
 ];
 
 function ScrollToTop() {

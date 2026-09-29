@@ -7,6 +7,7 @@ import { InboxPage } from './pages/InboxPage';
 import { SourcesPage } from './pages/SourcesPage';
 import { ActivityPage } from './pages/ActivityPage';
 import { AboutPage } from './pages/AboutPage';
+import { ResearchPage } from './pages/ResearchPage';
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
@@ -39,6 +40,7 @@ export function AppRoutes() {
           <Route path="/sources" element={<SourcesPage />} />
           <Route path="/activity" element={<ActivityPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/research" element={<ResearchPage />} />
           <Route path="*" element={<Navigate to="/inbox/needs_attention" replace />} />
         </Routes>
       </ErrorBoundary>

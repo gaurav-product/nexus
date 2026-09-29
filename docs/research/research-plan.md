@@ -1,5 +1,7 @@
 # Research plan
 
+> **Phase 16 note:** this original plan is kept as written. The runnable version — instruments, pre-registered thresholds, A–D outcome rules — is [validation-plan.md](validation-plan.md). Assumption IDs A1–A9 below are referenced from the [hypothesis scorecard](hypothesis-scorecard.md).
+
 **Status: no interviews have been run.** Everything in `docs/product/` about users is a **hypothesis** until this plan is executed. This file is the plan and the assumption map.
 
 ## Goal

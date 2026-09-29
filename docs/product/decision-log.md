@@ -116,3 +116,20 @@ Every material product/technical decision. Format per the brief. Dates are the d
 - **Why:** a document someone asked *you* for is effectively an obligation on you; Waiting is for obligations on others. Adding a section for one item type adds navigation weight.
 - **Trade-offs:** the section name is slightly inaccurate.
 - **Revisit condition:** requests turn out to be frequent in research.
+
+### D-016 · Evidence before features: freeze product scope for Phase 16
+- **Date:** 2026-09-29
+- **Context:** MVP built and tested; no user evidence exists for the thesis (A1 frequency is the biggest unknown).
+- **Options:** (a) keep building (connectors, AI extraction), (b) validate first.
+- **Chosen:** (b). No new integrations, agents, mobile, memory or monetisation until the [hypothesis scorecard](../research/hypothesis-scorecard.md) supports outcome A or B.
+- **Why:** every further feature assumes the problem is frequent and costly; none of that is known.
+- **Trade-offs:** slower-looking progress; the only code change is research tooling.
+- **Revisit condition:** scorecard classified (A–D) per [validation-plan.md](../research/validation-plan.md).
+
+### D-017 · Research sessions compare against a perfect-detection briefing, blind and counterbalanced
+- **Date:** 2026-09-29
+- **Context:** Testing "is Nexus useful?" in isolation invites polite enthusiasm (E0). The real question is whether it beats what people already have.
+- **Chosen:** each scenario is shown first in one of three views (current workflow, AI briefing, Nexus), rotated by participant, and the participant states a next action *before* any opinion; then all three appear side by side under blind labels. The briefing mock is given the **same facts** Nexus found; a test enforces that its dates and times match.
+- **Why:** isolates the interaction model (evidence, status, persistence) from detection. If the briefing wins with the same facts, the value is detection, not the inbox — a pivot signal, not a failure to hide.
+- **Trade-offs:** a real briefing might miss the conflict entirely, so this design is conservative *against* Nexus. The Nexus card is visually richer than the briefing, which can bias toward it; mitigated by coding behaviour (correct next action) above ratings.
+- **Revisit condition:** pilot session shows participants can tell which view is "the product" anyway.

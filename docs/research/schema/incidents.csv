@@ -1,0 +1,1 @@
+incident_id,participant_id,source_instrument,situation_type,recency_days,description,sources_involved,in_mvp_scope,discovery_method,discovered_in_time,resolution_minutes,consequence,existing_workaround,importance_1_5,evidence_level,coder,notes

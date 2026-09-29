@@ -35,6 +35,10 @@ npm run dev          # http://localhost:5173
 
 **Two-minute demo path:** the inbox opens on the interview conflict → click **Why am I seeing this?** → **Choose the correct version** → open the **flight change** (before/after, stale calendar, affected workshop) → open **Revised proposal** → **Open full email** → back → **Mark as resolved**. Then flip **How much to show** to *Sensitive* to see experiment E1, and visit **Sources** to see the prompt-injection email flagged and treated as data.
 
+## Validation (current phase)
+
+Product work is frozen until there's evidence (D-016). The research kit is in [`docs/research/`](docs/research/validation-plan.md): interview guide, 7-day diary, pre-registered [hypothesis scorecard](docs/research/hypothesis-scorecard.md), and a blind **Research session** in the app (`/research`) that compares the current workflow, an AI briefing and Nexus on the same facts. **No participant data has been collected yet.**
+
 ## Architecture
 
 ```text
@@ -55,7 +59,7 @@ None are needed for the demo. See [`.env.example`](.env.example) for the optiona
 ## Development & testing
 
 ```bash
-npm test                     # 95 engine + 14 UI tests
+npm test                     # 95 engine + 21 UI tests
 npm run build && npm run test:e2e   # demo journey + accessibility (desktop, dark, mobile)
 npm run typecheck
 npm run check:secrets
@@ -87,6 +91,7 @@ Read-only by design, with no send/forward/delete code path. Per-item source perm
 
 | | |
 |---|---|
+| Validation | [plan](docs/research/validation-plan.md) · [scorecard](docs/research/hypothesis-scorecard.md) · [evidence rubric](docs/research/evidence-rubric.md) · [interview guide v2](docs/research/interview-guide.md) · [diary study](docs/research/diary-study.md) · [log](docs/research/validation-log.md) · [recruitment](docs/research/participant-recruitment.md) · [consent](docs/research/consent-template.md) · [session](docs/research/session-template.md) · [observation](docs/research/observation-template.md) · [CSV schema](docs/research/schema/README.md) |
 | Research | [competitive analysis](docs/research/competitive-analysis.md) · [matrix](docs/research/competitive-matrix.md) · [whitespace & thesis challenge](docs/research/whitespace-map.md) · [research plan](docs/research/research-plan.md) · [interview guide](docs/research/user-interview-guide.md) |
 | Product | [problem](docs/product/problem-statement.md) · [personas](docs/product/personas.md) · [JTBD](docs/product/jobs-to-be-done.md) · [OST](docs/product/opportunity-solution-tree.md) · [value prop](docs/product/value-proposition.md) · [thesis](docs/product/product-thesis.md) · [non-goals](docs/product/non-goals.md) · [PRD](docs/product/prd.md) · [metrics](docs/product/metrics.md) · [decision log](docs/product/decision-log.md) |
 | Design & build | [UX](docs/design/ux-design.md) · [architecture](docs/architecture/architecture.md) · [experiments](docs/experiments/experiment-framework.md) · [testing](docs/testing/testing.md) |

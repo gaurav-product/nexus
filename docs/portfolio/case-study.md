@@ -4,6 +4,39 @@
 
 ---
 
+## Validation Status
+
+*Updated 29 Sept 2026, start of Phase 16. This section separates what is shown from what is believed. Nothing below "Proven" has been tested with a real person.*
+
+### Proven — demonstrated technically, in this repository
+- The engine detects the four situation types on the fictional dataset and stays silent on the control case (sources agreeing in different formats).
+- Uncertainty is structural: name-only matches can't exceed "Possible"; "not found" is never reported as "missing".
+- Prompt-injection text in a source can't change a status or trigger an action; logs carry no source text.
+- 95 engine tests, 21 UI tests and 8 end-to-end tests pass; zero serious or critical accessibility-audit issues across screens, themes and mobile.
+- Pipeline runs in ~2 ms (median) on the demo set; the database schema applies to Postgres 16 with row-level security on every table.
+
+### Observed — supported by real user research
+**Nothing yet. Not yet collected.** No interviews, diary entries or concept sessions have taken place.
+
+### Hypothesized — believed, not tested
+- People hit cross-source conflicts, changes, slipping commitments and unresolved requests often enough to matter (scorecard H1a–H1d).
+- Those situations cost real time or cause consequences (H2), and current habits catch them too late (H3).
+- Most of them live in email, calendar and documents — the MVP's sources (H4).
+- Showing source evidence increases trust (H5), and a persistent situation inbox beats a daily briefing for acting correctly, even when the briefing has the same facts (H6).
+- People will grant read-only access for this value (H7).
+- Humans prefer to decide information conflicts rather than have them auto-fixed (H9).
+
+### Unknown — needs evidence before any claim
+- Frequency per person per week, by situation type and segment.
+- Which segment, if any, has the problem most (the wedge, H8).
+- Whether conflicts in particular are rare enough that commitments are the real product.
+- Rule-based extraction accuracy on real, messy mail.
+- Whether a conservative inbox beats a sensitive one (experiment E1 — needs a live beta).
+- Willingness to pay. Retention. Not studied in this phase.
+
+### How this will be settled
+A [validation plan](../research/validation-plan.md) with problem interviews, a 7-day diary study and a blind, counterbalanced concept session comparing the current workflow, an AI briefing and Nexus. Thresholds were written **before** any data in the [hypothesis scorecard](../research/hypothesis-scorecard.md), and the outcome will be classified A (build) / B (narrow) / C (pivot) / D (kill). Progress is recorded only in the [validation log](../research/validation-log.md).
+
 ## 1. Problem
 
 The information that runs a busy person's week — when an interview is, what time a flight leaves, what they promised a client, whether they sent the signed form — is spread across email, calendar and documents. Each source is accurate when it's written. The failures happen **between** sources and **over time**: the recruiter's email says Monday but the calendar says Tuesday; the airline moved the flight but the calendar didn't; a promise made on Tuesday has no reminder on Thursday.
@@ -97,7 +130,7 @@ North Star: **Resolved Important Situations per weekly active user** — surface
 ## 16. Results
 
 **Measured (engineering):**
-- 95 engine tests, 14 UI tests, 6 end-to-end tests including the full demo journey — all passing.
+- 95 engine tests, 21 UI tests (incl. the research session), 8 end-to-end tests including the full demo journey — all passing.
 - Zero serious or critical axe accessibility violations on every screen, light and dark, desktop and mobile.
 - Pipeline: median 2.0 ms, p95 4.5 ms on the demo set.
 - Schema applied to Postgres 16: 9 tables, RLS on all.
@@ -116,6 +149,8 @@ North Star: **Resolved Important Situations per weekly active user** — surface
 Research → thesis reframed → engine built → run on demo data (3 defects) → tests (1 architectural bug) → visual review (ordering, focus, grouping) → axe (contrast) → re-verified. Each change is in the [decision log](../product/decision-log.md) and [changelog](../../CHANGELOG.md).
 
 ## 19. What I would build next
+
+*Superseded in order by Phase 16: nothing below gets built until the validation evidence supports it (decision D-016).*
 
 1. **Run the research plan.** Eight to twelve interviews, a 10-day diary study, and the card-vs-briefing concept test. Nothing else until that's done.
 2. If frequency holds: a **labelled eval set** from consented real data, and measure precision/recall of each rule.

@@ -120,3 +120,23 @@ test.describe('mobile', () => {
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   });
 });
+
+test.describe('research session', () => {
+  test('setup, first exposure and comparison are accessible and blind', async ({ page, isMobile }) => {
+    await page.goto('/#/research');
+    await noSeriousA11yIssues(page);
+    await page.getByLabel('Participant ID').fill('P03');
+    await page.getByLabel('Segment').selectOption('Consultant / freelancer');
+    await page.getByRole('button', { name: 'Start session' }).click();
+    await expect(page.getByText('Scenario 1 of 4: An upcoming interview')).toBeVisible();
+    await expect(page.getByRole('main')).not.toContainText('Nexus situation card');
+    await noSeriousA11yIssues(page);
+    await page.screenshot({ path: `${SHOTS}/${isMobile ? '11-mobile-' : '10-'}research-first.png`, fullPage: true });
+    await page.getByRole('button', { name: 'Compare views' }).click();
+    await expect(page.getByRole('region', { name: /View [123]/ })).toHaveCount(3);
+    await noSeriousA11yIssues(page);
+    if (!isMobile) await page.screenshot({ path: `${SHOTS}/12-research-compare.png`, fullPage: true });
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(overflow).toBeLessThanOrEqual(0);
+  });
+});
